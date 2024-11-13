@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syntax name="openscad">
+    <meta>
+        <name>OpenSCAD</name>
+        <type>script</type>
+        <preferred-file-extension>scad</preferred-file-extension>
+    </meta>
+    
+    <detectors>
+        <extension priority="1.0">scad</extension>
+    </detectors>
+    
+    <indentation>
+        <increase>
+            <expression>(\{[^}\"']*$)|(\[[^\]\"']*$)|(\([^)\"']*$)</expression>
+        </increase>
+        <decrease>
+            <expression>^\s*(\s*/\*.*\*/\s*)*[\}\]\)\\]</expression>
+        </decrease>
+    </indentation>
+    
+    <comments>
+        <single>
+            <expression>//</expression>
+        </single>
+        <multiline>
+            <starts-with>
+                <expression>/\*</expression>
+            </starts-with>
+            <ends-with>
+                <expression>\*/</expression>
+            </ends-with>
+        </multiline>
+    </comments>
+    
+    <brackets>
+        <pair open="{" close="}" />
+        <pair open="[" close="]" />
+        <pair open="(" close=")" />
+    </brackets>
+    
+    <surrounding-pairs>
+        <pair open="{" close="}" />
+        <pair open="[" close="]" />
+        <pair open="(" close=")" />
+        <pair open="&quot;" close="&quot;" />
+        <pair open="'" close="'" />
+    </surrounding-pairs>
+
+    <scopes>
+        <include syntax="self" collection="comments" />
+        <include syntax="self" collection="strings" />
+        <include syntax="self" collection="keywords" />
+        <include syntax="self" collection="functions" />
+        <include syntax="self" collection="values" />
+        <include syntax="self" collection="identifiers" />
+        <include syntax="self" collection="syntax" />
+        <include syntax="self" collection="definitions" />
+    </scopes>
+
+    <collections>
+        <!-- Comments -->
+        <collection name="comments">
+            <scope name="openscad.comment.single" spell-check="true">
+                <starts-with>
+                    <expression>//</expression>
+                </starts-with>
+                <ends-with>
+                    <expression>$</expression>
+                </ends-with>
+            </scope>
+            <scope name="openscad.comment.block" spell-check="true">
+                <starts-with>
+                    <expression>/\*</expression>
+                </starts-with>
+                <ends-with>
+                    <expression>\*/</expression>
+                </ends-with>
+            </scope>
+        </collection>
+
+        <!-- Strings -->
+        <collection name="strings">
+            <scope name="openscad.string.double-quoted">
+                <starts-with>
+                    <expression>&quot;</expression>
+                    <capture number="0" name="openscad.string.double-quoted.delimiter" />
+                </starts-with>
+                <ends-with>
+                    <expression>&quot;|(?:(?&lt;!\\)$)</expression>
+                    <capture number="0" name="openscad.string.double-quoted.delimiter" />
+                </ends-with>
+                <subscopes>
+                    <scope name="openscad.string.double-quoted.escape">
+                        <expression>\\(?:\\|&quot;|n|r|t|b|f)</expression>
+                    </scope>
+                </subscopes>
+            </scope>
+        </collection>
+
+        <!-- Keywords -->
+        <collection name="keywords">
+            <scope name="openscad.keyword" spell-check="false">
+                <strings>
+                    <!-- Control Flow -->
+                    <string>if</string>
+                    <string>else</string>
+                    <string>for</string>
+                    <string>intersection_for</string>
+                    <string>let</string>
+                    <string>each</string>
+                    <!-- Modifiers -->
+                    <string>module</string>
+                    <string>function</string>
+                    <string>assign</string>
+                    <!-- Import -->
+                    <string>include</string>
+                    <string>use</string>
+                    <!-- Operators -->
+                    <string>union</string>
+                    <string>difference</string>
+                    <string>intersection</string>
+                </strings>
+            </scope>
+        </collection>
+
+        <!-- Functions -->
+        <collection name="functions">
+            <scope name="openscad.identifier.core.function">
+                <strings>
+                    <!-- 3D Primitives -->
+                    <string>cube</string>
+                    <string>sphere</string>
+                    <string>cylinder</string>
+                    <string>polyhedron</string>
+                    <!-- 2D Primitives -->
+                    <string>circle</string>
+                    <string>square</string>
+                    <string>polygon</string>
+                    <string>text</string>
+                    <!-- Transformations -->
+                    <string>translate</string>
+                    <string>rotate</string>
+                    <string>scale</string>
+                    <string>resize</string>
+                    <string>mirror</string>
+                    <string>multmatrix</string>
+                    <string>color</string>
+                    <string>offset</string>
+                    <string>minkowski</string>
+                    <string>hull</string>
+                    <string>render</string>
+                    <!-- Extrusions -->
+                    <string>linear_extrude</string>
+                    <string>rotate_extrude</string>
+                    <!-- Other -->
+                    <string>surface</string>
+                    <string>projection</string>
+                    <string>import</string>
+                    <string>echo</string>
+                    <!-- Math -->
+                    <string>abs</string>
+                    <string>sin</string>
+                    <string>cos</string>
+                    <string>tan</string>
+                    <string>asin</string>
+                    <string>acos</string>
+                    <string>atan</string>
+                    <string>atan2</string>
+                    <string>pow</string>
+                    <string>sqrt</string>
+                    <string>exp</string>
+                    <string>len</string>
+                    <string>log</string>
+                    <string>ln</string>
+                    <string>str</string>
+                    <string>min</string>
+                    <string>max</string>
+                    <string>ceil</string>
+                    <string>floor</string>
+                    <string>round</string>
+                    <string>lookup</string>
+                </strings>
+            </scope>
+        </collection>
+
+        <!-- Values -->
+        <collection name="values">
+            <scope name="openscad.value.boolean">
+                <strings>
+                    <string>true</string>
+                    <string>false</string>
+                </strings>
+            </scope>
+            <scope name="openscad.value.null">
+                <strings>
+                    <string>undef</string>
+                </strings>
+            </scope>
+            <scope name="openscad.value.number">
+                <expression>\b\-?(?:\d+(?:\.\d*)?|(?:\.\d+))(?:[eE][+-]?\d+)?\b</expression>
+            </scope>
+        </collection>
+
+        <!-- Identifiers -->
+        <collection name="identifiers">
+            <!-- Special Variables -->
+            <scope name="openscad.identifier.constant">
+                <expression>\$[a-zA-Z_][a-zA-Z0-9_]*</expression>
+            </scope>
+
+            <!-- Function Definitions -->
+            <scope name="openscad.definition.function">
+                <symbol type="function">
+                    <context behavior="definition" />
+                </symbol>
+                <starts-with>
+                    <expression>function\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(</expression>
+                    <capture number="1" name="openscad.identifier.function" />
+                </starts-with>
+                <ends-with>
+                    <expression>\)</expression>
+                </ends-with>
+                <subscopes>
+                    <include syntax="self" collection="arguments" />
+                </subscopes>
+            </scope>
+
+            <!-- Module Definitions -->
+            <scope name="openscad.definition.module">
+                <symbol type="class">
+                    <context behavior="definition" />
+                </symbol>
+                <starts-with>
+                    <expression>module\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(</expression>
+                    <capture number="1" name="openscad.identifier.type" />
+                </starts-with>
+                <ends-with>
+                    <expression>\)</expression>
+                </ends-with>
+                <subscopes>
+                    <include syntax="self" collection="arguments" />
+                </subscopes>
+            </scope>
+        </collection>
+
+        <!-- Arguments -->
+        <collection name="arguments">
+            <scope name="openscad.arguments">
+                <starts-with>
+                    <expression>\(</expression>
+                    <capture number="0" name="openscad.bracket" />
+                </starts-with>
+                <ends-with>
+                    <expression>\)</expression>
+                    <capture number="0" name="openscad.bracket" />
+                </ends-with>
+                <subscopes>
+                    <scope name="openscad.identifier.argument">
+                        <symbol type="argument" />
+                        <expression>[a-zA-Z_][a-zA-Z0-9_]*(?=\s*=)</expression>
+                    </scope>
+                    <include syntax="self" collection="values" />
+                    <include syntax="self" collection="syntax" />
+                </subscopes>
+            </scope>
+        </collection>
+
+        <!-- Syntax -->
+        <collection name="syntax">
+            <scope name="openscad.bracket">
+                <expression>[\(\[\{\)\]\}]</expression>
+            </scope>
+            <scope name="openscad.operator">
+                <expression>(\+|\-|\*|/|%|\=|\!|\&lt;|\&gt;|\&lt;\=|\&gt;\=|\=\=|\!\=|\&amp;\&amp;|\|\|)</expression>
+            </scope>
+            <scope name="openscad.semicolon">
+                <expression>;</expression>
+            </scope>
+            <scope name="openscad.comma">
+                <expression>,</expression>
+            </scope>
+        </collection>
+    </collections>
+</syntax>

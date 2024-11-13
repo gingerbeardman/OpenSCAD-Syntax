@@ -1,0 +1,19 @@
+{
+    "bugs": "https://github.com/gingerbeardman/OpenSCAD-Syntax/issues",
+    "description": "OpenSCAD Language Support",
+    "funding": "https://ko-fi.com/gingerbeardman",
+    "identifier": "com.gingerbeardman.openscad",
+    "homepage": "https://www.gingerbeardman.com",
+    "license": "MIT",
+    "name": "OpenSCAD",
+    "organization": "gingerbeardman",
+    "repository": "https://github.com/gingerbeardman/OpenSCAD-Syntax",
+    "version": "1.0.0",
+
+    "categories": ["languages"],
+
+    "activationEvents": [
+        "onLanguage:openscad",
+        "onWorkspaceContains:*.scad"
+    ]
+}
