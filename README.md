@@ -8,6 +8,10 @@ See the internal [README](/OpenSCAD.novaextension/README.md) for more info.
 
 Recommended download from [Nova Extensions](https://extensions.panic.com/extensions/com.gingerbeardman/com.gingerbeardman.openscad/) website.
 
+## Screenshot
+
+![](screenshot.png)
+
 # Licence
 
 [MIT](/LICENSE)
