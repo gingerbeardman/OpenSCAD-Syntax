@@ -106,20 +106,23 @@
                     <string>if</string>
                     <string>else</string>
                     <string>for</string>
+                    <string>each</string>
                     <string>intersection_for</string>
                     <string>let</string>
-                    <string>each</string>
                     <!-- Modifiers -->
-                    <string>module</string>
-                    <string>function</string>
                     <string>assign</string>
-                    <!-- Import -->
+                    <string>function</string>
+                    <string>module</string>
+                    <!-- Import/Export -->
+                    <string>export</string>
+                    <string>import</string>
                     <string>include</string>
                     <string>use</string>
                     <!-- Operators -->
-                    <string>union</string>
-                    <string>difference</string>
                     <string>intersection</string>
+                    <string>difference</string>
+                    <string>render</string>
+                    <string>union</string>
                 </strings>
             </scope>
         </collection>
@@ -130,56 +133,73 @@
                 <strings>
                     <!-- 3D Primitives -->
                     <string>cube</string>
-                    <string>sphere</string>
                     <string>cylinder</string>
                     <string>polyhedron</string>
+                    <string>sphere</string>
                     <!-- 2D Primitives -->
                     <string>circle</string>
-                    <string>square</string>
                     <string>polygon</string>
+                    <string>square</string>
                     <string>text</string>
                     <!-- Transformations -->
-                    <string>translate</string>
-                    <string>rotate</string>
-                    <string>scale</string>
-                    <string>resize</string>
+                    <string>color</string>
+                    <string>hull</string>
+                    <string>minkowski</string>
                     <string>mirror</string>
                     <string>multmatrix</string>
-                    <string>color</string>
                     <string>offset</string>
-                    <string>minkowski</string>
-                    <string>hull</string>
-                    <string>render</string>
+                    <string>resize</string>
+                    <string>rotate</string>
+                    <string>scale</string>
+                    <string>translate</string>
                     <!-- Extrusions -->
                     <string>linear_extrude</string>
                     <string>rotate_extrude</string>
                     <!-- Other -->
-                    <string>surface</string>
-                    <string>projection</string>
-                    <string>import</string>
+                    <string>assert</string>
                     <string>echo</string>
+                    <string>parent_module</string>
+                    <string>projection</string>
+                    <string>render</string>
+                    <string>search</string>
+                    <string>surface</string>
+                    <string>version</string>
+                    <string>version_num</string>
+                    <!-- Type test -->
+                    <string>is_bool</string>
+                    <string>is_list</string>
+                    <string>is_num</string>
+                    <string>is_string</string>
+                    <string>is_undef</string>
                     <!-- Math -->
                     <string>abs</string>
-                    <string>sin</string>
-                    <string>cos</string>
-                    <string>tan</string>
-                    <string>asin</string>
                     <string>acos</string>
+                    <string>asin</string>
                     <string>atan</string>
                     <string>atan2</string>
-                    <string>pow</string>
-                    <string>sqrt</string>
-                    <string>exp</string>
-                    <string>len</string>
-                    <string>log</string>
-                    <string>ln</string>
-                    <string>str</string>
-                    <string>min</string>
-                    <string>max</string>
                     <string>ceil</string>
+                    <string>chr</string>
+                    <string>concat</string>
+                    <string>cos</string>
+                    <string>cross</string>
+                    <string>exp</string>
                     <string>floor</string>
-                    <string>round</string>
+                    <string>len</string>
+                    <string>ln</string>
+                    <string>log</string>
                     <string>lookup</string>
+                    <string>max</string>
+                    <string>min</string>
+                    <string>mod</string>
+                    <string>norm</string>
+                    <string>ord</string>
+                    <string>pow</string>
+                    <string>rands</string>
+                    <string>round</string>
+                    <string>sin</string>
+                    <string>sqrt</string>
+                    <string>str</string>
+                    <string>tan</string>
                 </strings>
             </scope>
         </collection>
