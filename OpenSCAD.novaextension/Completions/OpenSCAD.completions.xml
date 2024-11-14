@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completions>
+    <!-- Main provider for function/module completions -->
+    <provider>
+        <syntax>openscad</syntax>
+        <selector>*:not(string,comment)</selector>
+        <expression>\b(\w+)$</expression>
+        <set>openscad.all</set>
+    </provider>
+
+    <!-- Parameters provider -->
+    <provider>
+        <syntax>openscad</syntax>
+        <selector>*:not(string,comment)</selector>
+        <expression>(\w+)\s*=\s*$|,\s*(\w+)\s*=\s*$</expression>
+        <set>openscad.parameters</set>
+    </provider>
+
+    <!-- Special variables after $ -->
+    <provider>
+        <syntax>openscad</syntax>
+        <selector>*:not(string,comment)</selector>
+        <expression>(?&lt;=\$)(\w*)$</expression>
+        <set>openscad.special-variables</set>
+    </provider>
+
+    <!-- Combined set of all primary completions, with alternate syntaxes -->
+    <set name="openscad.all">
+        <!-- 3D Primitives -->
+        <completion string="cube">
+            <behavior>
+                <append>(size = 1)</append>
+            </behavior>
+        </completion>
+        <completion string="cube">
+            <behavior>
+                <append>(size = [width, depth, height])</append>
+            </behavior>
+        </completion>
+        <completion string="cube">
+            <behavior>
+                <append>([width, depth, height], center = false)</append>
+            </behavior>
+        </completion>
+        <completion string="sphere">
+            <behavior>
+                <append>(r = $[radius])</append>
+            </behavior>
+        </completion>
+        <completion string="sphere">
+            <behavior>
+                <append>(d = $[diameter])</append>
+            </behavior>
+        </completion>
+        <completion string="cylinder">
+            <behavior>
+                <append>(h = $[height], r = $[radius], center = false)</append>
+            </behavior>
+        </completion>
+        <completion string="cylinder">
+            <behavior>
+                <append>(h = $[height], d = $[diameter], center = false)</append>
+            </behavior>
+        </completion>
+        <completion string="cylinder">
+            <behavior>
+                <append>(h = $[height], r1 = $[bottom_radius], r2 = $[top_radius], center = false)</append>
+            </behavior>
+        </completion>
+        <completion string="polyhedron">
+            <behavior>
+                <append>(points = $[points], faces = $[faces], convexity = 10)</append>
+            </behavior>
+        </completion>
+
+        <!-- 2D Primitives -->
+        <completion string="square">
+            <behavior>
+                <append>(size = $[size])</append>
+            </behavior>
+        </completion>
+        <completion string="square">
+            <behavior>
+                <append>(size = [$[width], $[height]], center = false)</append>
+            </behavior>
+        </completion>
+        <completion string="circle">
+            <behavior>
+                <append>(r = $[radius])</append>
+            </behavior>
+        </completion>
+        <completion string="circle">
+            <behavior>
+                <append>(d = $[diameter])</append>
+            </behavior>
+        </completion>
+        <completion string="polygon">
+            <behavior>
+                <append>(points = $[points], paths = $[paths], convexity = 10)</append>
+            </behavior>
+        </completion>
+
+        <!-- Transformations -->
+        <completion string="translate">
+            <behavior>
+                <append>([$[x], $[y], $[z]]) {
+    $[cursor]
+}</append>
+            </behavior>
+        </completion>
+        <completion string="rotate">
+            <behavior>
+                <append>([$[x], $[y], $[z]]) {
+    $[cursor]
+}</append>
+            </behavior>
+        </completion>
+        <completion string="scale">
+            <behavior>
+                <append>([$[x], $[y], $[z]]) {
+    $[cursor]
+}</append>
+            </behavior>
+        </completion>
+        <completion string="mirror">
+            <behavior>
+                <append>([$[x], $[y], $[z]]) {
+    $[cursor]
+}</append>
+            </behavior>
+        </completion>
+        <completion string="color">
+            <behavior>
+                <append>([$[r], $[g], $[b]]) {
+    $[cursor]
+}</append>
+            </behavior>
+        </completion>
+        <completion string="linear_extrude">
+            <behavior>
+                <append>(height = $[height], twist = $[twist], scale = $[scale]) {
+    $[cursor]
+}</append>
+            </behavior>
+        </completion>
+        <completion string="rotate_extrude">
+            <behavior>
+                <append>(angle = $[angle]) {
+    $[cursor]
+}</append>
+            </behavior>
+        </completion>
+
+        <!-- Operations -->
+        <completion string="union">
+            <behavior>
+                <append>() {
+    $[cursor]
+}</append>
+            </behavior>
+        </completion>
+        <completion string="difference">
+            <behavior>
+                <append>() {
+    $[cursor]
+}</append>
+            </behavior>
+        </completion>
+        <completion string="intersection">
+            <behavior>
+                <append>() {
+    $[cursor]
+}</append>
+            </behavior>
+        </completion>
+
+        <!-- Math functions -->
+        <completion string="min">
+            <behavior>
+                <append>($[a], $[b])</append>
+            </behavior>
+        </completion>
+        <completion string="max">
+            <behavior>
+                <append>($[a], $[b])</append>
+            </behavior>
+        </completion>
+        <completion string="sin">
+            <behavior>
+                <append>($[angle])</append>
+            </behavior>
+        </completion>
+        <completion string="cos">
+            <behavior>
+                <append>($[angle])</append>
+            </behavior>
+        </completion>
+        <completion string="tan">
+            <behavior>
+                <append>($[angle])</append>
+            </behavior>
+        </completion>
+        <completion string="abs">
+            <behavior>
+                <append>($[value])</append>
+            </behavior>
+        </completion>
+        <completion string="ceil">
+            <behavior>
+                <append>($[value])</append>
+            </behavior>
+        </completion>
+        <completion string="floor">
+            <behavior>
+                <append>($[value])</append>
+            </behavior>
+        </completion>
+        <completion string="round">
+            <behavior>
+                <append>($[value])</append>
+            </behavior>
+        </completion>
+    </set>
+
+    <!-- Common Parameters -->
+    <set name="openscad.parameters">
+        <!-- Boolean parameters -->
+        <completion string="center">
+            <behavior>
+                <append>false</append>
+            </behavior>
+        </completion>
+        <completion string="center">
+            <behavior>
+                <append>true</append>
+            </behavior>
+        </completion>
+        
+        <!-- Numeric parameters -->
+        <completion string="r">
+            <behavior>
+                <append>1</append>
+            </behavior>
+        </completion>
+        <completion string="d">
+            <behavior>
+                <append>2</append>
+            </behavior>
+        </completion>
+        <completion string="h">
+            <behavior>
+                <append>1</append>
+            </behavior>
+        </completion>
+        <completion string="size">
+            <behavior>
+                <append>[1, 1, 1]</append>
+            </behavior>
+        </completion>
+        <completion string="convexity">
+            <behavior>
+                <append>10</append>
+            </behavior>
+        </completion>
+        
+        <!-- Resolution parameters -->
+        <completion string="fn">
+            <behavior>
+                <append>32</append>
+            </behavior>
+        </completion>
+        <completion string="fa">
+            <behavior>
+                <append>12</append>
+            </behavior>
+        </completion>
+        <completion string="fs">
+            <behavior>
+                <append>2</append>
+            </behavior>
+        </completion>
+        
+        <!-- Transform parameters -->
+        <completion string="scale">
+            <behavior>
+                <append>[1, 1, 1]</append>
+            </behavior>
+        </completion>
+        <completion string="twist">
+            <behavior>
+                <append>0</append>
+            </behavior>
+        </completion>
+        <completion string="slices">
+            <behavior>
+                <append>20</append>
+            </behavior>
+        </completion>
+        <completion string="angle">
+            <behavior>
+                <append>360</append>
+            </behavior>
+        </completion>
+    </set>
+
+    <!-- Special Variables -->
+    <set name="openscad.special-variables">
+        <completion string="fn" />
+        <completion string="fa" />
+        <completion string="fs" />
+        <completion string="t" />
+        <completion string="vpr" />
+        <completion string="vpt" />
+        <completion string="vpd" />
+        <completion string="children" />
+    </set>
+</completions>

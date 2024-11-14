@@ -220,6 +220,9 @@
             <scope name="openscad.value.number">
                 <expression>\b\-?(?:\d+(?:\.\d*)?|(?:\.\d+))(?:[eE][+-]?\d+)?\b</expression>
             </scope>
+            <scope name="openscad.value.number.hex">
+                <expression>\b0x[0-9a-fA-F]+\b</expression>
+            </scope>
         </collection>
 
         <!-- Identifiers -->
